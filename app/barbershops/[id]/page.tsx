@@ -12,6 +12,7 @@ interface BabershopDetailsPageProps {
 
 const BabershopDetailsPage = async ({ params }: BabershopDetailsPageProps) => {
   const session = await getServerSession()
+
   if (!params.id) {
     // TODO: redirecionar para home page
     return null
@@ -35,7 +36,7 @@ const BabershopDetailsPage = async ({ params }: BabershopDetailsPageProps) => {
 
       <div className="px-5 flex flex-col gap-4 py-6">
         {barbershop.services.map(service => (
-          <ServiceItem key={service.id} service={service} isAuthenticated={!!session?.user} />
+          <ServiceItem key={service.id} barbershop={barbershop} service={service} isAuthenticated={!!session?.user} />
         ))}
       </div>
     </div>
